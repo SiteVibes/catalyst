@@ -16,6 +16,8 @@ import { getPreferredCurrencyCode } from '~/lib/currency';
 
 import { Slideshow } from './_components/slideshow';
 
+import { createSiteVibesApp } from '~/components/sitevibes';
+
 const HomePageQuery = graphql(
   `
     query HomePageQuery($currencyCode: currencyCode) {
@@ -78,6 +80,9 @@ interface Props {
 export default async function Home({ params }: Props) {
   const { locale } = await params;
 
+  const svApp = await createSiteVibesApp();
+  const rsData = svApp.config();
+
   setRequestLocale(locale);
 
   const t = await getTranslations('Home');
@@ -107,6 +112,11 @@ export default async function Home({ params }: Props) {
       />
 
       <Subscribe />
+
+      <div>
+        <h2>TESTING</h2>
+        <div>{JSON.stringify(rsData)}</div>
+      </div>
     </>
   );
 }
