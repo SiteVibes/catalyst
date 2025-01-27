@@ -112,11 +112,6 @@ export default async function Home({ params }: Props) {
       />
 
       <Subscribe />
-
-      <div>
-        <h2>TESTING</h2>
-        <div>{JSON.stringify(rsData)}</div>
-      </div>
     </>
   );
 }
