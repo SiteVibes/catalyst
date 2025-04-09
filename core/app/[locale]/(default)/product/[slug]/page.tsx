@@ -16,6 +16,9 @@ import { ProductViewed } from './_components/product-viewed';
 import { Reviews } from './_components/reviews';
 import { getProductData } from './page-data';
 
+import { svProductViewed } from '~/components/sitevibes/api/analytics';
+import { svRetrieveProductReviews } from '~/components/sitevibes/api/reviews';
+
 const getOptionValueIds = ({ searchParams }: { searchParams: Awaited<Props['searchParams']> }) => {
   const { slug, ...options } = searchParams;
 
@@ -223,6 +226,14 @@ export default async function Product(props: Props) {
     useDefaultOptionSelections: true,
     currencyCode,
   });
+
+  const svRs = await svProductViewed(productId);
+  if (!svRs.status) {
+    console.error(svRs.message);
+  }
+
+  const svRs1 = await svRetrieveProductReviews(productId);
+  console.log(JSON.stringify(svRs1));
 
   return (
     <>
