@@ -1,15 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { svRetrieveProductReviews } from '~/components/sitevibes/api/reviews';
+import { svRetrieveProductReviewsSummary } from '~/components/sitevibes/api/reviews';
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const productId = searchParams.get('product_id');
-  let page: number | undefined;
-  const pageParam = searchParams.get('page');
-  if (pageParam) {
-    page = Number(pageParam);
-  }
-  const rs = await svRetrieveProductReviews(Number(productId), page);
+  const rs = await svRetrieveProductReviewsSummary(Number(productId));
   if (!rs.status) {
     return NextResponse.json({ message: rs.message }, { status: 500 });
   }

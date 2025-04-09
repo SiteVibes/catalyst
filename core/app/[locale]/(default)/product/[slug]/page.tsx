@@ -16,7 +16,6 @@ import { ProductViewed } from './_components/product-viewed';
 import { getProductData } from './page-data';
 
 import { svProductViewed } from '~/components/sitevibes/api/analytics';
-import { svRetrieveProductReviews } from '~/components/sitevibes/api/reviews';
 import SvReviews from '~/components/sitevibes/ui/reviews';
 
 const getOptionValueIds = ({ searchParams }: { searchParams: Awaited<Props['searchParams']> }) => {

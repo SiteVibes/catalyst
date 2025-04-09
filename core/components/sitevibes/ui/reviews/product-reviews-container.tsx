@@ -6,7 +6,7 @@ import StarRatingButtons from './star-rating-buttons';
 import ProductReviewForm from './product-review-form';
 import ProductReviewRow from './product-review-row';
 import { ProductReview, ProductSummary, SvTranslations } from './types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ReviewsContainer(props: {
   productId: number;
@@ -21,9 +21,49 @@ export default function ReviewsContainer(props: {
   const [nextPage, setNextPage] = useState(0);
   const [prevPage, setPrevPage] = useState(0);
 
-  const refreshProductSummary = () => {};
+  const refreshProductSummary = () => {
+    let url = `/api/sitevibes/product-review-summary?product_id=${props.productId}`;
+    fetch(url, { method: 'get' })
+      .then((rs) => rs.json())
+      .then((rs) => {
+        if (rs.items && rs.items.length) {
+          setProductSummary(rs.items[0]);
+        } else {
+          setProductSummary({ total_reviews: 0, average_rating: 0 });
+        }
+      })
+      .catch(console.error);
+  };
 
-  const refreshProductReviews = (page?: number) => {};
+  const refreshProductReviews = (page?: number) => {
+    let url = `/api/sitevibes/reviews?product_id=${props.productId}`;
+    if (page) {
+      url += `&page=${page}`;
+    }
+    fetch(url, { method: 'get' })
+      .then((rs) => rs.json())
+      .then((rs) => {
+        setProductReviews(rs.items);
+        setPrevPage(rs.page - 1);
+        const totalScanned = rs.page * rs.limit;
+        if (totalScanned < rs.total) {
+          setNextPage(rs.page + 1);
+        } else {
+          setNextPage(0);
+        }
+      })
+      .catch(console.error);
+  };
+
+  useEffect(() => {
+    refreshProductSummary();
+  }, []);
+
+  useEffect(() => {
+    if (!productReviews.length) {
+      refreshProductReviews();
+    }
+  }, []);
 
   return (
     <div className={`${styles.section} ${styles.container}`}>

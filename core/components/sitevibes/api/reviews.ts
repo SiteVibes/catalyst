@@ -31,9 +31,13 @@ export async function svRetrieveProductReviewsSummary(
 
 export async function svRetrieveProductReviews(
   productId: number,
+  page?: number
 ): Promise<SvResponse<SvProductReviewsRs>> {
   const app_id = uuid();
-  const url = `https://${SV_API_HOST}/api/v1/product-reviews?app_id=${app_id}&product_id=${productId}`;
+  let url = `https://${SV_API_HOST}/api/v1/product-reviews?app_id=${app_id}&product=${productId}`;
+  if (page) {
+    url += `&page=${page}`
+  }
   const rs = await fetch(url, {
     method: 'get',
     headers: {
