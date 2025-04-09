@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { ProductReviewFormWidgetProps } from './types';
 import styles from '../style.module.css';
+import { SvCreateProductReviewRq } from '../../types';
+import { v4 as uuid } from 'uuid';
 
 export default function ProductReviewForm(props: ProductReviewFormWidgetProps) {
   const [email, setEmail] = useState('');
@@ -65,28 +67,22 @@ export default function ProductReviewForm(props: ProductReviewFormWidgetProps) {
       return;
     }
 
-    // sdk
-    //   .callAction<{ status: boolean }>({
-    //     actionName: 'sitevibes/create-product-review',
-    //     payload: {
-    //       product_id: props.product_id,
-    //       email,
-    //       name,
-    //       title,
-    //       content,
-    //       rating: props.selectedRating,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     if (response.isError || (!response.isError && !response.data.status)) {
-    //       console.error('### create-product-view error ###', response);
-    //     } else {
-    //       props.onReviewSubmitted();
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error('### create-product-view error ###', err);
-    //   });
+    const review: SvCreateProductReviewRq = {
+      app_id: uuid(),
+      user_session_id: uuid(),
+      product_id: props.product_id,
+      email,
+      name,
+      title,
+      content,
+      rating: props.selectedRating,
+    };
+
+    fetch('/api/sitevibes/reviews', { method: 'post', body: JSON.stringify(review) })
+      .then((rs) => {
+        props.onReviewSubmitted();
+      })
+      .catch(console.error);
   };
 
   return (
