@@ -624,5 +624,15 @@
         "decrease": "Decrease count"
       }
     }
+  },
+  "SiteVibes": {
+    "Reviews": {
+      "title": "Our customers love it",
+      "rating_label": "Overall Rating",
+      "reviews_label": "Reviews",
+      "star_rating_label": "Review this product",
+      "write_review_btn_label": "Write a review",
+      "submit_review_btn_label": "Submit review"
+    }
   }
 }

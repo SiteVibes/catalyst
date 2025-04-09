@@ -13,11 +13,11 @@ import { getPreferredCurrencyCode } from '~/lib/currency';
 import { addToCart } from './_actions/add-to-cart';
 import { ProductSchema } from './_components/product-schema';
 import { ProductViewed } from './_components/product-viewed';
-import { Reviews } from './_components/reviews';
 import { getProductData } from './page-data';
 
 import { svProductViewed } from '~/components/sitevibes/api/analytics';
 import { svRetrieveProductReviews } from '~/components/sitevibes/api/reviews';
+import SvReviews from '~/components/sitevibes/ui/reviews';
 
 const getOptionValueIds = ({ searchParams }: { searchParams: Awaited<Props['searchParams']> }) => {
   const { slug, ...options } = searchParams;
@@ -232,9 +232,6 @@ export default async function Product(props: Props) {
     console.error(svRs.message);
   }
 
-  const svRs1 = await svRetrieveProductReviews(productId);
-  console.log(JSON.stringify(svRs1));
-
   return (
     <>
       <ProductDetail
@@ -262,7 +259,7 @@ export default async function Product(props: Props) {
         title={t('RelatedProducts.title')}
       />
 
-      <Reviews productId={productId} />
+      <SvReviews productId={productId}/>
 
       <Stream fallback={null} value={productPromise}>
         {(product) => (

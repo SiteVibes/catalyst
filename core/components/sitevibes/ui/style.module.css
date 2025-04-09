@@ -1,0 +1,162 @@
+.section {
+  margin: 10px 50px !important;
+}
+
+.container {
+  border: 1px solid #4b4b5a;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 0;
+}
+
+.container h3 {
+  font-size: 20px;
+}
+
+.container input {
+  width: 100%;
+}
+
+.container textarea {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.field_group {
+  margin-bottom: 5px;
+}
+
+.primary_button {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.secondary_button {
+  border: 1px solid gray;
+  background-color: rgb(216, 216, 216);
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.star_buttons_panel {
+  display: flex;
+}
+
+.star_buttons_panel span {
+  margin: 3px;
+}
+
+.star_button_default {
+  border: 1px solid orangered;
+  border-radius: 5px;
+  background-color: #fff;
+  stroke: orangered;
+  fill: #fff;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.star_button_filled {
+  border: 1px solid orangered;
+  border-radius: 5px;
+  background-color: orangered;
+  stroke: orangered;
+  fill: #fff;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.star_display_panel {
+  display: flex;
+}
+
+.star_default {
+  border-radius: 5px;
+  stroke: orangered;
+  fill: #fff;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.star_filled {
+  border-radius: 5px;
+  stroke: orangered;
+  fill: orangered;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.top_spacer {
+  margin-top: 10px;
+}
+
+.top_spacer_lg {
+  margin-top: 20px;
+}
+
+.rating_score_display {
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 1;
+  margin-right: 20px;
+  color: #4b4b5a;
+}
+
+.error_text {
+  color: red;
+}
+
+.centered_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta_button {
+  color: #fff;
+  background-color: rgb(114, 0, 167);
+}
+
+.sub_text {
+  color: #4b4b5a;
+  font-size: smaller;
+}
+
+.nav_link_button {
+  background-color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav_link_button_active {
+  background-color: #000;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.nav_section {
+  border: 1px solid #4b4b5a;
+  border-radius: 5px;
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #888888;
+}
