@@ -14,7 +14,7 @@ export async function svRetrieveProductReviewsSummary(
   productId: number,
 ): Promise<SvResponse<SvProductsSummaryRs>> {
   const app_id = uuid();
-  const url = `https://${SV_API_HOST}/api/v1/product-summary?app_id=${app_id}&product_id=${productId}`;
+  const url = `https://${SV_API_HOST}/product-summary?app_id=${app_id}&product_id=${productId}`;
   const rs = await fetch(url, {
     method: 'get',
     headers: {
@@ -34,7 +34,7 @@ export async function svRetrieveProductReviews(
   page?: number
 ): Promise<SvResponse<SvProductReviewsRs>> {
   const app_id = uuid();
-  let url = `https://${SV_API_HOST}/api/v1/product-reviews?app_id=${app_id}&product=${productId}`;
+  let url = `https://${SV_API_HOST}/product-reviews?app_id=${app_id}&product=${productId}`;
   if (page) {
     url += `&page=${page}`
   }
@@ -57,7 +57,7 @@ export async function svCreateProductReview(
 ): Promise<SvResponse<any>> {
   review.app_id = uuid();
   review.user_session_id = uuid();
-  const url = `https://${SV_API_HOST}/api/v1/product-reviews`;
+  const url = `https://${SV_API_HOST}/product-reviews`;
   const rs = await fetch(url, {
     method: 'post',
     headers: {

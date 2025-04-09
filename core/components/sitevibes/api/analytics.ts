@@ -86,7 +86,7 @@ export async function svProductViewed(productId: number): Promise<SvResponse<any
     quantity: product.inventory.aggregated?.availableToSell,
   };
 
-  const url = `https://${SV_API_HOST}/api/v1/product-view`;
+  const url = `https://${SV_API_HOST}/product-view`;
   const rs = await fetch(url, {
     method: 'post',
     headers: {
