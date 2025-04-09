@@ -5,12 +5,12 @@ import StarRatingDisplay from './star-rating-display';
 import StarRatingButtons from './star-rating-buttons';
 import ProductReviewForm from './product-review-form';
 import ProductReviewRow from './product-review-row';
-import { ProductReview, ProductSummary, SvTranslations } from './types';
+import { CustomerAccount, ProductReview, ProductSummary, SvTranslations } from './types';
 import { useEffect, useState } from 'react';
 
 export default function ReviewsContainer(props: {
   productId: number;
-  customerInfo?: any;
+  customerInfo?: CustomerAccount;
   t: SvTranslations;
 }) {
   const [productSummary, setProductSummary] = useState<ProductSummary>();

@@ -90,28 +90,49 @@ export default function ProductReviewForm(props: ProductReviewFormWidgetProps) {
       <div className={styles.field_group}>
         <label>Email:</label>
         <div>
-          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className={styles.text_field}/>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.text_field}
+            disabled={!!props.customerAccount}
+          />
           {emailError && <span className={styles.error_text}>{emailError}</span>}
         </div>
       </div>
       <div className={styles.field_group}>
         <label>Name:</label>
         <div>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} className={styles.text_field}/>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className={styles.text_field}
+            disabled={!!props.customerAccount}
+          />
           {nameError && <span className={styles.error_text}>{nameError}</span>}
         </div>
       </div>
       <div className={styles.field_group}>
         <label>Title:</label>
         <div>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={styles.text_field}/>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className={styles.text_field}
+          />
           {titleError && <span className={styles.error_text}>{titleError}</span>}
         </div>
       </div>
       <div className={styles.field_group}>
         <label>Content</label>
         <div>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} className={styles.text_field}/>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className={styles.text_field}
+          />
           {contentError && <span className={styles.error_text}>{contentError}</span>}
         </div>
       </div>

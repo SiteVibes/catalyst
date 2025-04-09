@@ -36,7 +36,7 @@ export type CustomerAccount = {
   email: string;
   firstName: string;
   lastName: string;
-  loyalty_info: LoyaltyInfo;
+  loyalty_info?: LoyaltyInfo;
 };
 
 export type LoyaltyInfo = {

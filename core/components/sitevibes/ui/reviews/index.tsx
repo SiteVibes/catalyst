@@ -2,7 +2,10 @@
 
 import { getTranslations } from 'next-intl/server';
 import ReviewsContainer from './product-reviews-container';
-import { SvTranslations } from './types';
+import { CustomerAccount, SvTranslations } from './types';
+import { getSessionCustomerAccessToken } from '~/auth';
+import { client } from '~/client';
+import { graphql } from '~/client/graphql';
 
 export default async function SvReviews(props: { productId: number; customerInfo?: any }) {
   const t = await getTranslations('SiteVibes.Reviews');
@@ -16,7 +19,24 @@ export default async function SvReviews(props: { productId: number; customerInfo
     submit_review_btn_label: t('submit_review_btn_label'),
   };
 
-  return (
-    <ReviewsContainer productId={props.productId} customerInfo={props.customerInfo} t={content} />
-  );
+  let customerInfo: CustomerAccount | undefined;
+  const customerAccessToken = await getSessionCustomerAccessToken();
+  if (customerAccessToken) {
+    const CustomerQuery = graphql(`
+      query CustomerQuery {
+        customer {
+          email
+          firstName
+          lastName
+        }
+      }
+    `);
+    const response = await client.fetch({
+      document: CustomerQuery,
+      customerAccessToken,
+    });
+    customerInfo = response.data.customer!;
+  }
+
+  return <ReviewsContainer productId={props.productId} customerInfo={customerInfo} t={content} />;
 }
